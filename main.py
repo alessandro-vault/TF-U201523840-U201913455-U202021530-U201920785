@@ -1,8 +1,14 @@
 from helper.load_data import load
-from models.database import Database
+from data import streets, intersections
 
-data = Database()
-load(data)
 
-print(len(data.streets))
-print(len(data.intersections))
+def main():
+    print(streets)
+    print(streets.find(4827828))
+    print(streets.find_by(name="Alfonso Ugarte"))
+    print(intersections.first)
+
+
+if __name__ == "__main__":
+    load()
+    main()
