@@ -1,11 +1,9 @@
 from helper.load_data import load
-from data import streets, intersections
-import graphviz as gv
+from classes.gmap import Map
 
 
 def main():
-    print(intersections.first())
-    print(streets.find(intersections.first().street_id))
+    pass
 
 
 if __name__ == "__main__":

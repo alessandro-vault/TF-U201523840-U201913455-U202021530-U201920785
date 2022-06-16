@@ -1,6 +1,5 @@
-from models.streets import Streets
-from models.intersections import Intersections
-
+from data.models.streets import Streets
+from data.models.intersections import Intersections
 
 streets = Streets()
 intersections = Intersections()

@@ -1,6 +1,7 @@
 import csv
 
 from data import streets, intersections
+from classes.gmap import Map
 
 
 def load():
@@ -13,6 +14,12 @@ def load():
                     streets.add_street(*row)
                 else:
                     intersections.add_intersection(*row)
+    load_map()
+
+
+def load_map():
+    gmap = Map()
+    gmap.draw()
 
 
 def parse_float(value):
