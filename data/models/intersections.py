@@ -1,10 +1,22 @@
-
-
 class Intersection:
-    def __init__(self, identifier, street_id, street_name, origin_id, final_id,
-                 origin_intersection_id, final_intersection_id, distance,
-                 speed, cost_1, cost_2, origin_lat, origin_lon, final_lat,
-                 final_lon):
+    def __init__(
+        self,
+        identifier,
+        street_id,
+        street_name,
+        origin_id,
+        final_id,
+        origin_intersection_id,
+        final_intersection_id,
+        distance,
+        speed,
+        cost_1,
+        cost_2,
+        origin_lat,
+        origin_lon,
+        final_lat,
+        final_lon,
+    ):
         self.identifier = int(identifier)
         self.street_id = int(street_id)
         self.street_name = street_name
@@ -20,7 +32,7 @@ class Intersection:
         self.end_coords = float(final_lat), float(final_lon)
 
     def __repr__(self):
-        return f'<Intersection {self.identifier}: {self.start_coords} -> {self.end_coords}>'
+        return f"<Intersection {self.identifier}: {self.start_coords} -> {self.end_coords}>"
 
 
 class Intersections:
@@ -30,19 +42,24 @@ class Intersections:
     def add_intersection(self, *args):
         self.intersections.append(Intersection(*args))
 
+    # ! QUERY
+    def first(self):
+        return self.intersections[0]
+
     def find(self, identifier):
         for intersection in self.intersections:
             if intersection.identifier == identifier:
                 return intersection
 
-    def first(self):
-        return self.intersections[0]
+    def start_coords(self):
+        return set([x.start_coords for x in self.intersections])
 
+    # ? FUNCTIONS
     def __iter__(self):
-        return self.intersections.__iter__()
+        return iter(self.intersections)
 
     def __len__(self):
         return len(self.intersections)
 
     def __repr__(self):
-        return f'<Intersections @count={len(self)}>'
+        return f"<Intersections @count={len(self)}>"

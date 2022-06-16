@@ -6,8 +6,8 @@ from classes.gmap import Map
 
 def load():
     for file_name in ["streets", "intersections"]:
-        with open(f'data/{file_name}.csv', mode='r', encoding='utf-8-sig') as file:
-            reader = csv.reader(file, delimiter=';')
+        with open(f"data/{file_name}.csv", mode="r", encoding="utf-8-sig") as file:
+            reader = csv.reader(file, delimiter=";")
             for row in reader:
                 row = map(lambda x: parse_float(x), row)
                 if file_name == "streets":
