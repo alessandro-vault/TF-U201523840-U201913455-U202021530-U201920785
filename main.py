@@ -4,9 +4,7 @@ from data import intersections
 
 
 def main():
-    print(intersections)
-    print(len(intersections.start_coords()))
-
+    pass
 
 if __name__ == "__main__":
     load()
