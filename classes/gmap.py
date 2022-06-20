@@ -30,7 +30,7 @@ class Map:
         system_os = platform.system()
         if system_os == "Windows":
             file_path = f'{os.getcwd()}\\{self.file_name}'
-        elif system_os.system() == "Linux" or system_os.system() == "Darwin":
+        elif system_os == "Linux" or system_os == "Darwin":
             file_path = f'{os.getcwd()}/{self.file_name}'
         if not os.path.exists(file_path):
             self.gmap.draw(file_path)
