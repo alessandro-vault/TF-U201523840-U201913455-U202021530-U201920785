@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from classes.node import Node
+from data.classes.node import Node
 from collections import defaultdict
 
 

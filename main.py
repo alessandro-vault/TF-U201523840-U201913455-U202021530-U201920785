@@ -1,10 +1,10 @@
+
 from helper.load_data import load
-from classes.app import App
+from services.intersections import find_by_street_name
 
 
 def main():
-    app = App()
-    app.directions(start="Plaza 2 de Mayo", end="Arequipa")
+    print(find_by_street_name('Plaza 2 de Mayo'))
 
 
 if __name__ == "__main__":
