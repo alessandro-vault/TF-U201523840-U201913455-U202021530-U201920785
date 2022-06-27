@@ -1,16 +1,16 @@
 class Node:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
+    def __init__(self, lat, lon):
+        self.lat = lat
+        self.lon = lon
 
     def pos(self):
-        return self.x, self.y
+        return self.lon, self.lat
 
     def line(self, node):
-        return [self.x, node.x], [self.y, node.y]
+        return [self.lon, node.lon], [self.lat, node.lat]
 
     def distance_between(self, node):
-        return ((self.x - node.x) ** 2 + (self.y - node.y) ** 2) ** 0.5
+        return ((self.lon - node.lon) ** 2 + (self.lat - node.lat) ** 2) ** 0.5
 
     def __repr__(self):
-        return f'<Node lat:{self.x}, lon:{self.y}>'
+        return f'<Node lat:{self.lat}, lon:{self.lon}>'

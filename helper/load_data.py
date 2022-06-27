@@ -1,6 +1,6 @@
 import csv
 
-from data import streets, intersections
+from data import streets, intersections, graph
 from classes.gmap import Map
 
 
@@ -15,6 +15,7 @@ def load():
                 else:
                     intersections.add_intersection(*row)
     load_map()
+    graph.build(intersections)  # build graph
 
 
 def load_map():
