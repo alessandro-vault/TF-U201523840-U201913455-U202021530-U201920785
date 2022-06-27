@@ -1,10 +1,11 @@
+
 from helper.load_data import load
-from classes.gmap import Map
-from data import intersections
+from services.intersections import find_by_street_name
 
 
 def main():
-    pass
+    print(find_by_street_name('Plaza 2 de Mayo'))
+
 
 if __name__ == "__main__":
     load()

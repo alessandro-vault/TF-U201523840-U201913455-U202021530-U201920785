@@ -1,12 +1,16 @@
-class Street:
-    def __init__(self, _id, name, intersection_count):
-        self.identifier = int(_id)
-        self.name = str(name)
-        self.intersection_count = int(intersection_count)
+from sqlalchemy import Integer, Column, String
+
+from db.session import Base
+
+
+class Street(Base):
+    __tablename__ = "streets"
+    id = Column(Integer, primary_key=True, unique=True)
+    name = Column(String)
+    intersection_count = Column(Integer)
 
     def __repr__(self):
-        return f"<Street: @id={self.identifier} @name={self.name} @intersection_count={self.intersection_count}>"
-
+        return f"<Street: @id={self.id} @name={self.name} @intersection_count={self.intersection_count}>"
 
 class Streets:
     def __init__(self):

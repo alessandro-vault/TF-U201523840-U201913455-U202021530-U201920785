@@ -1,22 +1,28 @@
 import gmplot
 import os
 import platform
-from data import intersections
+
+from services.intersections import get_all as intersections
 
 
 class Map:
     def __init__(self):
+        self.intersections = intersections()
         self.gmap = gmplot.GoogleMapPlotter(-12.046619, -77.043157, 18)
         self.file_name = "map.html"
         self.coordinates = zip(
-            *list(map(lambda x: x.start_coords, intersections)))
-        self.labels = list(map(lambda x: x.identifier, intersections))
+            *list(map(lambda x: (x.start_lat, x.start_lon), self.intersections))
+        )
+        self.labels = list(map(lambda x: x.id, self.intersections))
         self.load()
 
     def load(self):
         self.scatter()
-        for intersection in intersections:
-            self.add_plot(intersection.start_coords, intersection.end_coords)
+        for i in self.intersections:
+            self.add_plot(
+                (i.start_lat, i.start_lon),
+                (i.end_lat, i.end_lon)
+            )
 
     def scatter(self):
         self.gmap.scatter(*self.coordinates,
