@@ -1,9 +1,10 @@
 from helper.load_data import load
-from data import graph
+from classes.app import App
 
 
 def main():
-    print(graph)
+    app = App()
+    app.directions(start="Plaza 2 de Mayo", end="Arequipa")
 
 
 if __name__ == "__main__":

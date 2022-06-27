@@ -32,9 +32,21 @@ class Graph:
             for j in self.adj[i]:
                 x, y = self.nodes[i].line(self.nodes[j])
                 plt.plot(x, y)
+        #plt.show()
 
     def add_node(self, _id, node):
         self.nodes[_id] = node
+
+    def find_by(self, coords):
+        for i in self.nodes:
+            print(coords)
+            print(self.nodes[i].pos())
+            if self.nodes[i].pos() == coords:
+                return i
+        return None
+
+    def locate(self, coords):
+        self.find_by(coords)
 
     def __repr__(self):
         return repr(self.adj)

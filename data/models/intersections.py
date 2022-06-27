@@ -1,3 +1,6 @@
+import random
+
+
 class Intersection:
     def __init__(
         self,
@@ -54,6 +57,12 @@ class Intersections:
     def start_coords(self):
         return set([x.start_coords for x in self.intersections])
 
+    def find_by(self, street):
+        result = []
+        for intersection in self.intersections:
+            if intersection.street_id == street.identifier:
+                result.append(intersection)
+        return random.sample(result, 1)[0]
     # ? FUNCTIONS
     def __iter__(self):
         return iter(self.intersections)
