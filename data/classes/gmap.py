@@ -2,7 +2,7 @@ import gmplot
 import os
 import platform
 
-from services.intersections import get_all as intersections
+from services.intersections import find_all as intersections
 
 
 class Map:
