@@ -1,5 +1,7 @@
 import csv
 import os
+
+from data.classes.graph import Graph
 from models.intersections import Intersection
 from models.streets import Street
 from data.classes.gmap import Map
@@ -9,7 +11,8 @@ from db import db, session
 def load():
     if not os.path.exists(f'{os.getcwd()}/map.db'):
         load_database()
-        load_map()
+    load_map()
+    load_graph()
 
 
 def load_database():
@@ -51,6 +54,11 @@ def load_database():
 def load_map():
     gmap = Map()
     gmap.draw()
+
+
+def load_graph():
+    graph = Graph()
+    return graph
 
 
 def parse_float(value):

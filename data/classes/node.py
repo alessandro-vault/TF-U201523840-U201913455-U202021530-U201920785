@@ -4,13 +4,13 @@ class Node:
         self.lon = lon
 
     def pos(self):
-        return self.lon, self.lat
+        return self.lat, self.lon
 
     def line(self, node):
-        return [self.lon, node.lon], [self.lat, node.lat]
+        return [self.lat, node.lat], [self.lon, node.lon]
 
     def distance_between(self, node):
-        return ((self.lon - node.lon) ** 2 + (self.lat - node.lat) ** 2) ** 0.5
+        return (float(self.lat - node.lat) ** 2 + float(self.lon - node.lon) ** 2) ** 0.5
 
     def __repr__(self):
         return f'<Node lat:{self.lat}, lon:{self.lon}>'
