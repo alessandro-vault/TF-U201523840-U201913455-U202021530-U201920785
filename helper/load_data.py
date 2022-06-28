@@ -56,9 +56,10 @@ def load_map():
     gmap.draw()
 
 
-def load_graph():
-    graph = Graph()
-    return graph
+def intersection_condition(line):
+    return float(line[11]) > -11.0 or float(line[11]) < -13.0 or float(line[12]) > -76 or float(
+        line[12]) < -77.4 or float(line[13]) > -11.0 or float(line[13]) < -13.0 or float(
+        line[14]) > -76 or float(line[14]) < -77.4
 
 
 def parse_float(value):
