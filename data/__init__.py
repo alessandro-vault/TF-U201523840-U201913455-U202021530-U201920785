@@ -4,4 +4,4 @@ from data.models.graph import Graph
 
 streets = Streets()
 intersections = Intersections()
-graph = Graph()
+graph = Graph(1, 210)
