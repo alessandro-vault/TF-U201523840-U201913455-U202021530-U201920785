@@ -62,42 +62,62 @@ class graph:
         for i in self.adj:
             for j in self.adj[i]:
                 x, y = self.nodes[i].line(self.nodes[j])
-                plt.plot(x, y, 'blue')
-        path = self.find(a, b)
-        i = 0
-        while i < len(path) - 1:
+                plt.plot(x, y, 'green')
+        path, paths = self.find(a, b)
+        for item in paths:
+            j = 0
+            while j < len(item) - 2:
+                x, y = self.nodes[item[j]].line(self.nodes[item[j + 1]])
+                j = j + 1
+                plt.plot(x, y, 'red')
+            j = 0
+        while i < len(path) - 2:
             x, y = self.nodes[path[i]].line(self.nodes[path[i + 1]])
             i = i + 1
-            plt.plot(x, y, 'red')
-        print(path)
+            plt.plot(x, y, 'blue')
         plt.show()
 
 
-    def _next(self, a, b, path):
+    def _next(self, a, b, path, ban_list):
         next_node = -1
         h = 1.0
         #evita el error al intentar acceder a la lista de adj de un nodo que no lo tiene
         try: self.adj[a]
-        except: return list()
-        #busca el siguiente nodo mas cercano
+        except:
+            ban_list.append(a)
+            path.append(next_node)
+            return path, ban_list
+        #busca el siguiente nodo mas cercano al objetivo
         for i in self.adj[a]:
-            if h > self.nodes[i].h(self.nodes[b]):
+            if h > self.nodes[i].h(self.nodes[b]) and not i in ban_list:
                 h = self.nodes[i].h(self.nodes[b])
                 next_node = i
         if next_node == b:
-            p = [b]
-        elif next_node == -1:
-            p = list()
+            path.append(b)
+        elif next_node != -1:
+            path.append(next_node)
+            path, ban_list = self._next(next_node, b, path, ban_list)
         else:
-            p = self._next(next_node, b, path)
-            p.append(next_node)
-        return p
+            ban_list.append(a)
+            path.append(next_node)
+            return path, ban_list
+        return path, ban_list
     
 
-    def find(self,a, b):
-        path = list()
-        path = self._next(a, b, path)
-        return path
+    def _find(self,a, b, ban_list):
+        path = [a]
+        path, ban_list = self._next(a, b, path, ban_list)
+        return path, ban_list
+    
+
+    def find(self, a, b):
+        paths = []
+        path = [-1]
+        ban_list = []
+        while -1 in path:
+            path, ban_list = self._find(a, b, ban_list)
+            paths.append(path)
+        return path, paths
 
 
 def run():
@@ -108,7 +128,7 @@ def run():
             line = row[0].split(';')
             if float(line[11]) > -11.0 or float(line[11]) < -13.0 or float(line[12]) > -76 or float(line[12]) < -77.4 or float(line[13]) > -11.0 or float(line[13]) < -13.0 or float(line[14]) > -76 or float(line[14]) < -77.4: continue
             points.append([float(line[5]),float(line[12]),float(line[11]),float(line[6]),float(line[14]),float(line[13])])
-    a, b = 1548, 9843
+    a, b = 1, 210
     new_map = graph(points, a, b)
     pass
 
